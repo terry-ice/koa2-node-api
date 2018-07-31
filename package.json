@@ -1,0 +1,38 @@
+{
+  "name": "koa2-node-api",
+  "version": "1.0.0",
+  "description": "myblog-api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/terry-ice/koa2-node-api.git"
+  },
+  "keywords": [
+    "koa",
+    "node",
+    "mongo"
+  ],
+  "author": "terry",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/terry-ice/koa2-node-api/issues"
+  },
+  "homepage": "https://github.com/terry-ice/koa2-node-api#readme",
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "cloudinary": "^1.11.0",
+    "koa-bodyparser": "^4.2.1",
+    "koa-logger": "^3.2.0",
+    "koa-router": "^7.4.0",
+    "koa-session": "^5.8.2",
+    "koa2": "^2.0.0-alpha.7",
+    "lodash": "^4.17.10",
+    "mongoose": "^5.2.6",
+    "speakeasy": "^2.0.0",
+    "uuid": "^3.3.2",
+    "xss": "^1.0.3"
+  }
+}
