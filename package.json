@@ -2,9 +2,10 @@
   "name": "koa2-node-api",
   "version": "1.0.0",
   "description": "myblog-api",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "cross-env NODE_ENV=development  babel-node server.js",
+    "start": "cross-env NODE_ENV=production babel-node server.js"
   },
   "repository": {
     "type": "git",
@@ -24,15 +25,23 @@
   "dependencies": {
     "bluebird": "^3.5.1",
     "cloudinary": "^1.11.0",
+    "cross-env": "^5.2.0",
+    "koa": "^2.5.2",
     "koa-bodyparser": "^4.2.1",
     "koa-logger": "^3.2.0",
     "koa-router": "^7.4.0",
     "koa-session": "^5.8.2",
-    "koa2": "^2.0.0-alpha.7",
     "lodash": "^4.17.10",
     "mongoose": "^5.2.6",
     "speakeasy": "^2.0.0",
     "uuid": "^3.3.2",
     "xss": "^1.0.3"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^8.2.3",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1"
   }
 }
