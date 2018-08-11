@@ -41,14 +41,14 @@ tagSchema.plugin(autoIncrement.plugin, {
 	model: 'Tag',
 	field: 'id',
 	startAt: 1,
-	incrementBy: 1
+	incrementBy: 12
 });
 
-// 时间更新
-tagSchema.pre('findOneAndUpdate', function(next) {
-	this.findOneAndUpdate({}, { update_at: Date.now() });
-	next();
-});
+// // 时间更新
+// tagSchema.pre('findOneAndUpdate', function(next) {
+// 	this.findOneAndUpdate({}, { update_at: Date.now() });
+// 	next();
+// });
 
 // 标签模型
 const Tag = mongoose.model('Tag', tagSchema);

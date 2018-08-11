@@ -4,9 +4,9 @@
 *
 */
 
-const mongoose = require('np-core/np-mongodb').mongoose;
-const autoIncrement = require('mongoose-auto-increment');
-const mongoosePaginate = require('mongoose-paginate');
+import {mongoose} from 'node-utils/utils-mongoose'
+import autoIncrement from 'mongoose-auto-increment'
+import mongoosePaginate from 'mongoose-paginate'
 
 // 自增ID初始化
 autoIncrement.initialize(mongoose.connection);
