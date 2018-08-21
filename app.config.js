@@ -2,7 +2,7 @@ const argv = require('yargs').argv;
 
 exports.APP = {
 	ROOT_PATH: __dirname,
-	LIMIT: 16,
+	LIMIT: 10,
 	PORT: 3002
 }
 exports.MONGODB = {

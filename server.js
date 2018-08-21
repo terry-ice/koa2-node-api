@@ -8,11 +8,16 @@ import "app-module-path/register";
 import { addPath } from 'app-module-path';
 addPath(__dirname + '/');
 import router from "node-router/router"
+import config from 'app.config';
 import mongodb from 'node-utils/utils-mongoose'
+import mongoosePaginate from 'mongoose-paginate'
 const app = new Koa()
 mongodb.connect()
 
-
+// global options
+mongoosePaginate.paginate.options = {
+	limit: config.APP.LIMIT
+};
 
 app.keys = ['nodeapi']
 // app config
