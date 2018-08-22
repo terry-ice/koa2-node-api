@@ -59,5 +59,7 @@ categorySchema.pre('findOneAndUpdate', function(next) {
 // 分类模型
 const Category = mongoose.model('Category', categorySchema);
 
+// Promise.promisifyAll(Category);
+// Promise.promisifyAll(Category.prototype);
 // export
 module.exports = Category;

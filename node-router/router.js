@@ -19,10 +19,10 @@ app
   .delete('/tag', controller.tag.deleteList) // 删除多个tag
 
    //category 相关api
-  // .post('/category', controller.tag.add) // 添加tag
+  .post('/category', controller.category.add) // 添加category
   .get('/category', controller.category.list) // category列表
   // .put('/category/:category_id', controller.category.update) // 更新category
-  // .delete('/category/:category_id', controller.category.deleteId) // 删除单个category
+  .delete('/category/:category_id', controller.category.deleteId) // 删除单个category
   // .delete('/category', controller.category.deleteList) // 删除多个category
 
 app.all('*', async (ctx) => {

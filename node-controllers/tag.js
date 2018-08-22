@@ -110,7 +110,6 @@ module.exports = {
       Tag.findByIdAndUpdate(tag_id, ctx.request.body, {
         new: true
       }).then((res) => {
-        // console.log(res,'res')
         ctx.success({
           message: '标签修改成功'
         })
@@ -120,21 +119,35 @@ module.exports = {
       })
     };
     // 修改前判断slug的唯一性，是否被占用
-    await Tag.find({
+    const findres = await Tag.find({
         slug
       })
       .then(([_tag]) => {
         const hasExisted = (_tag && (_tag._id != tag_id));
-        hasExisted ?
-          ctx.error({
-            message: 'slug已被占用'
-          }) : putTag();
+        return hasExisted
+        // hasExisted ?
+        //   ctx.error({
+        //     message: 'slug已被占用'
+        //   }) : putTag();
       })
       .catch(err => {
         ctx.error({
           message: '修改前查询失败'
         });
       })
+    if (!findres) {
+      Tag.findByIdAndUpdate(tag_id, ctx.request.body, {
+        new: true
+      })
+      ctx.success({
+        message: '标签修改成功'
+      })
+    } else {
+      ctx.error({
+        message: 'slug已被占用'
+      })
+    }
+    // console.log(findres,'findres')
   },
   async deleteId(ctx) {
     // 删除单个标签
