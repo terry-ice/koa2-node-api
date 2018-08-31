@@ -21,9 +21,9 @@ app
    //category 相关api
   .post('/category', controller.category.add) // 添加category
   .get('/category', controller.category.list) // category列表
-  // .put('/category/:category_id', controller.category.update) // 更新category
+  .put('/category/:category_id', controller.category.update) // 更新category
   .delete('/category/:category_id', controller.category.deleteId) // 删除单个category
-  // .delete('/category', controller.category.deleteList) // 删除多个category
+  .delete('/category', controller.category.deleteList) // 删除多个category
 
 app.all('*', async (ctx) => {
   ctx.set('Access-Control-Allow-Headers', 'Authorization, Origin, No-Cache, X-Requested-With, If-Modified-Since, Pragma, Last-Modified, Cache-Control, Expires, Content-Type, X-E4M-With');

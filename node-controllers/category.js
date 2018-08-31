@@ -2,7 +2,7 @@
  * @Author: terry 
  * @Date: 2018-08-10 17:01:24 
  * @Last Modified by: https://github.com/terry-ice
- * @Last Modified time: 2018-08-22 18:31:16
+ * @Last Modified time: 2018-08-31 11:27:36
  */
 
 import Category from 'node-model/model-category'
@@ -147,5 +147,80 @@ module.exports = {
       }) => ctx.error({
         message: '分类删除失败'
       }));;
+  },
+  async deleteList(ctx) {
+    // 验证
+    const {
+      categories
+    } = ctx.request.body
+    if (!categories || !categories.length) {
+      ctx.error({
+        message: '缺少有效参数'
+      })
+      return false;
+    };
+    // 把所有pid为categories中任何一个id的分类分别提升到自己分类本身的PID分类或者null
+    await Category.remove({
+        '_id': {
+          $in: categories
+        }
+      })
+      .then(result => {
+        ctx.success({
+          message: '分类批量删除成功'
+        });
+      })
+      .catch(err => {
+        ctx.error({
+          message: '分类批量删除失败'
+        })
+      })
+  },
+  async update(ctx){
+    const {
+      category_id
+    } = ctx.params
+    const category = ctx.request.body
+    const {
+      slug,
+      pid
+    } = category
+    console.log(category,'category')
+    // 验证
+    if (slug == undefined) {
+      ctx.error({ message: 'slug不合法' });
+      return false;
+    };
+  
+    // // 修改
+    // const putCategory = () => {
+     
+    // };
+  
+    // 修改前判断slug的唯一性，是否被占用
+    // 验证Slug合法性
+    const list = await Category.find({
+      slug
+    })
+    console.log(list,'list')
+    if (list.length) {
+      ctx.error({
+        message: '分类已经存在'
+      });
+    } else {
+      if (['', '0', 'null', 'false'].includes(pid) || !pid || Object.is(pid, category_id)) {
+        category.pid = null;
+      };
+      await Category.findByIdAndUpdate(category_id, category, { new: true })
+      .then(result => {
+        ctx.success({
+          message: '分类修改成功'
+        });
+      })
+      .catch(err => {
+        ctx.error({ message: '分类修改失败' });
+      })
+    }
+
   }
 }
